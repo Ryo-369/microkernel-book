@@ -1,0 +1,30 @@
+launch.jsonの使い方
+
+0. 以下のコマンドはすべてmicrokernel-bookフォルダで行う
+  cd ~/microkernel-book
+
+1. .vscodeフォルダを作成する
+  mkdir ~/microkernel-book/.vscode
+
+2. .vscodeフォルダにlaunch.jsonをコピーする
+  cp ~/microkernel-book/ryo_self_tools/vscode/launch.json ~/microkernel-book/.vscode/launch.json
+
+3. HinaOSをビルドする
+  make -j8
+
+4. QEMUを実行する
+  make run GDBSERVER=1
+
+   実行したら下記の状態になることを確認する
+   ※QEMUはGDBが接続されるまでHinaOSを起動しない。
+     以下がGDB接続待ち状態の表示
+nagato@RyoLaptop:~/microkernel-book$ make run GDBSERVER=1
+    UPDATE  build/consts.mk
+       GEN  build/compile_commands.json
+
+Kernel Executable: build/hinaos.elf (3737 KiB)
+BootFS Image:      build/bootfs.bin (3020 KiB)
+HinaFS Image:      build/hinafs.img (131072 KiB)
+      QEMU  build/hinaos.elf
+
+5. vscodeの実行とデバッグを実行するとHinaOSが起動する。
